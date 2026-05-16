@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ff6b00;
+  --color-primary-light: #fff5f0;
+  --color-primary-dark: #e65a00;
+  --font-sans: "Outfit", sans-serif;
+  
+  --shadow-premium: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+  --shadow-orange: 0 10px 15px -3px rgb(255 107 0 / 0.2);
+}
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 antialiased selection:bg-primary/20 selection:text-primary;
+    font-family: var(--font-sans);
+  }
+}
+
+.glass-card {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-premium;
+}
+
+.orange-gradient {
+  background: linear-gradient(135deg, #ff6b00 0%, #ff8e3c 100%);
+}
+
+.soft-orange-bg {
+  background: linear-gradient(180deg, #fff5f0 0%, #ffffff 100%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 rounded-full border-4 border-white hover:bg-gray-300 transition-colors;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
