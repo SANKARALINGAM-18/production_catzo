@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useAuthStore } from '../store/useAuthStore';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { Users, ShoppingBag, DollarSign, LayoutDashboard } from 'lucide-react';
+import { Users, ShoppingBag, IndianRupee, LayoutDashboard } from 'lucide-react';
 
 const AdminDashboard = () => {
     const { user } = useAuthStore();
@@ -173,11 +173,11 @@ const AdminDashboard = () => {
 
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
                     <div className="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center text-green-600">
-                        <DollarSign size={28} />
+                        <IndianRupee size={28} />
                     </div>
                     <div>
                         <p className="text-gray-500 font-medium">Total Revenue</p>
-                        <p className="text-2xl font-bold text-gray-900">${stats.totalRevenue.toFixed(2)}</p>
+                        <p className="text-2xl font-bold text-gray-900">₹{stats.totalRevenue.toLocaleString()}</p>
                     </div>
                 </div>
             </div>
