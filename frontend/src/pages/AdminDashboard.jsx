@@ -100,7 +100,7 @@ const AdminDashboard = () => {
     const handleStatusChange = async (orderId, newStatus) => {
         try {
             const config = { headers: { Authorization: `Bearer ${user.token}` } };
-            await axios.put(`http://localhost:5000/api/orders/${orderId}`, { status: newStatus }, config);
+            await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders/${orderId}`, { status: newStatus }, config);
             setOrders(orders.map(o => o._id === orderId ? { ...o, status: newStatus } : o));
             toast.success('Order status updated');
         } catch (error) {

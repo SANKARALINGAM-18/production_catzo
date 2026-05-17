@@ -43,7 +43,7 @@ const CheckoutModal = () => {
             };
             
             const config = { headers: { Authorization: `Bearer ${user.token}` } };
-            const res = await axios.post('http://localhost:5000/api/orders', orderData, config);
+            const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders`, orderData, config);
             
             clearCart();
             setIsCheckoutOpen(false);

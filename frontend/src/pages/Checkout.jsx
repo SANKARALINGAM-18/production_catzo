@@ -54,7 +54,7 @@ const Checkout = () => {
                 }
             };
 
-            await axios.post('http://localhost:5000/api/orders', orderData, config);
+            await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders`, orderData, config);
             
             toast.success('Order placed successfully!');
             clearCart();
