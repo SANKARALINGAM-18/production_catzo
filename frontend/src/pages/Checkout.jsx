@@ -123,7 +123,7 @@ const Checkout = () => {
                                 <div className="w-48 h-48 mx-auto bg-white border border-gray-200 rounded-lg flex items-center justify-center mb-4">
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="UPI QR" className="w-40 h-40" />
                                 </div>
-                                <p className="text-xl font-bold text-gray-900 mb-4">Amount: ${totalAmount.toFixed(2)}</p>
+                                <p className="text-xl font-bold text-gray-900 mb-4">Amount: ₹{totalAmount.toLocaleString()}</p>
                                 <button 
                                     onClick={() => setUpiPaid(true)}
                                     disabled={upiPaid}
@@ -149,14 +149,14 @@ const Checkout = () => {
                                             <div className="text-gray-500 text-xs">Qty: {item.quantity}</div>
                                         </div>
                                     </div>
-                                    <div className="font-semibold">${(item.price * item.quantity).toFixed(2)}</div>
+                                    <div className="font-semibold">₹{(item.price * item.quantity).toLocaleString()}</div>
                                 </div>
                             ))}
                         </div>
                         
                         <div className="border-t border-gray-100 pt-4 flex justify-between font-bold text-xl mb-6">
                             <span>Total</span>
-                            <span className="text-primary">${totalAmount.toFixed(2)}</span>
+                            <span className="text-primary">₹{totalAmount.toLocaleString()}</span>
                         </div>
 
                         <button 

@@ -65,7 +65,7 @@ const ProductDetails = () => {
                 <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                     <div className="text-sm text-primary font-bold tracking-wider uppercase mb-2">{product.category}</div>
                     <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{product.name}</h1>
-                    <div className="text-3xl font-bold text-gray-900 mb-6">${product.price}</div>
+                    <div className="text-3xl font-bold text-gray-900 mb-6">₹{product.price.toLocaleString()}</div>
                     
                     <p className="text-gray-600 mb-8 leading-relaxed">
                         {product.description}

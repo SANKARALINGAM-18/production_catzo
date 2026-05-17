@@ -33,7 +33,7 @@ const Cart = () => {
                             
                             <div className="flex-1">
                                 <h3 className="font-semibold text-lg text-gray-900">{item.name}</h3>
-                                <div className="text-primary font-bold">${item.price}</div>
+                                <div className="text-primary font-bold">₹{item.price.toLocaleString()}</div>
                             </div>
                             
                             <div className="flex items-center gap-3 bg-gray-50 rounded-lg p-1 border border-gray-200">
@@ -53,7 +53,7 @@ const Cart = () => {
                             </div>
                             
                             <div className="font-bold text-lg w-20 text-right">
-                                ${(item.price * item.quantity).toFixed(2)}
+                                ₹{(item.price * item.quantity).toLocaleString()}
                             </div>
                             
                             <button 
@@ -74,7 +74,7 @@ const Cart = () => {
                         <div className="space-y-4 mb-6 text-gray-600">
                             <div className="flex justify-between">
                                 <span>Subtotal</span>
-                                <span className="font-medium text-gray-900">${totalAmount.toFixed(2)}</span>
+                                <span className="font-medium text-gray-900">₹{totalAmount.toLocaleString()}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span>Shipping</span>
@@ -82,7 +82,7 @@ const Cart = () => {
                             </div>
                             <div className="border-t border-gray-100 pt-4 flex justify-between font-bold text-xl text-gray-900">
                                 <span>Total</span>
-                                <span>${totalAmount.toFixed(2)}</span>
+                                <span>₹{totalAmount.toLocaleString()}</span>
                             </div>
                         </div>
                         

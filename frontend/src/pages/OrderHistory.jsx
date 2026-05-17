@@ -78,7 +78,7 @@ const OrderHistory = () => {
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-500">Total</p>
-                                    <p className="font-bold text-primary">${order.totalAmount.toFixed(2)}</p>
+                                    <p className="font-bold text-primary">₹{order.totalAmount.toLocaleString()}</p>
                                 </div>
                                 <div>
                                     <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getStatusColor(order.status)}`}>
@@ -97,7 +97,7 @@ const OrderHistory = () => {
                                         />
                                         <div className="flex-1">
                                             <h4 className="font-medium text-gray-900">{item.product?.name || 'Unknown Product'}</h4>
-                                            <p className="text-sm text-gray-500">Qty: {item.quantity} x ${item.product?.price || 0}</p>
+                                            <p className="text-sm text-gray-500">Qty: {item.quantity} x ₹{(item.product?.price || 0).toLocaleString()}</p>
                                         </div>
                                     </div>
                                 ))}
