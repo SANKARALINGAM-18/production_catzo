@@ -8,6 +8,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 connectDB();
 
@@ -35,6 +36,7 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/upload', uploadRoutes);
 
 app.get('/', (req, res) => {
     res.send('Catzo API is running...');

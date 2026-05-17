@@ -14,6 +14,33 @@ const AdminDashboard = () => {
     const [loading, setLoading] = useState(true);
     const [activeTab, setActiveTab] = useState('orders'); // 'orders' or 'products'
     const [newProduct, setNewProduct] = useState({ name: '', price: '', category: 'Cats', image: '', description: '', stock: '' });
+    const [uploading, setUploading] = useState(false);
+
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try {
+            setUploading(true);
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${user.token}`
+                }
+            };
+            const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/upload`, formData, config);
+            setNewProduct({ ...newProduct, image: res.data.url });
+            toast.success('Image uploaded successfully to Cloudinary!');
+        } catch (error) {
+            console.error("Upload error:", error);
+            toast.error(error.response?.data?.message || 'Failed to upload image');
+        } finally {
+            setUploading(false);
+        }
+    };
 
     useEffect(() => {
         if (!user) {
@@ -282,15 +309,45 @@ const AdminDashboard = () => {
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 block">Image URL</label>
-                                    <input 
-                                        type="text" 
-                                        required
-                                        className="w-full bg-gray-50 border-none rounded-xl py-3 px-4 text-sm font-bold focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                                        placeholder="https://images..."
-                                        value={newProduct.image}
-                                        onChange={(e) => setNewProduct({...newProduct, image: e.target.value})}
-                                    />
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 block">Product Image</label>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center gap-4">
+                                            {newProduct.image && (
+                                                <img src={newProduct.image} className="w-16 h-16 rounded-xl object-cover border border-gray-100" alt="Preview" />
+                                            )}
+                                            <div className="flex-1">
+                                                <input 
+                                                    type="file" 
+                                                    accept="image/*"
+                                                    onChange={handleImageUpload}
+                                                    className="hidden" 
+                                                    id="file-upload"
+                                                    disabled={uploading}
+                                                />
+                                                <label 
+                                                    htmlFor="file-upload" 
+                                                    className={`w-full flex items-center justify-center gap-2 border-2 border-dashed border-gray-200 hover:border-primary py-4 px-4 rounded-xl text-xs font-bold text-gray-500 hover:text-primary transition-all cursor-pointer ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                                >
+                                                    {uploading ? 'Uploading to Cloudinary...' : 'Upload File (Cloudinary)'}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex items-center gap-2">
+                                            <span className="h-px bg-gray-100 flex-1"></span>
+                                            <span className="text-[9px] font-black text-gray-300 uppercase tracking-wider">or</span>
+                                            <span className="h-px bg-gray-100 flex-1"></span>
+                                        </div>
+
+                                        <input 
+                                            type="text" 
+                                            required
+                                            className="w-full bg-gray-50 border-none rounded-xl py-3 px-4 text-xs font-bold focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                            placeholder="Paste direct Image URL"
+                                            value={newProduct.image}
+                                            onChange={(e) => setNewProduct({...newProduct, image: e.target.value})}
+                                        />
+                                    </div>
                                 </div>
                                 <div>
                                     <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 block">Description</label>
