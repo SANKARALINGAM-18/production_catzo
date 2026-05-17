@@ -44,6 +44,13 @@ const Navbar = ({ onOpenCart }) => {
                         </span>
                     </Link>
 
+                    {/* Navigation Links */}
+                    <div className="hidden md:flex items-center gap-6 ml-2">
+                        <Link to="/shop" className="text-sm font-bold text-gray-500 hover:text-primary transition-all">
+                            Shop
+                        </Link>
+                    </div>
+
                     {/* Search Bar */}
                     <div className="flex-1 max-w-2xl relative hidden lg:block">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={18} />
